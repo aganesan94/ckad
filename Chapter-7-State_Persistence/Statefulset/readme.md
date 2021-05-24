@@ -78,3 +78,7 @@ serviceName: <same-as-headless-service>
 
 * By default a PVC is shared in a StatefulSet. Not all storage options do not support this option
 *  This can be achieved using a volumeClaimTemplates section under the stateful set definition which has all the information of hte PersistentVolumeClaim. This definition creates a PV and a PVC per replica or per pod. it is an array
+
+Step 1: Create a service with clusterIP as none
+Step 2: Include the service name in the StatefulSet spec section
+Step 3: Include host and subdomain in the spec section of the pod.

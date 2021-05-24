@@ -3,7 +3,8 @@ kind: StatefulSet
 metadata:
   name: mysql-statefulset
 spec:
-  serviceName: <same-as-headless-service>
+  # Service name, same as headless service
+  # serviceName: <same-as-headless-service>
   template:
     metadata:
       labels:

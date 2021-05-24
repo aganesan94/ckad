@@ -144,6 +144,43 @@ kubectl get pvc
 kubectl get storageclass
 ```
 
+
+PVC also can be included in Deployments as follows
+
+```
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-statefulset
+spec:
+  serviceName: <same-as-headless-service>
+  template:
+    metadata:
+      labels:
+        name: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql
+          ports:
+            - containerPort: 3306
+  selector:
+    matchLabels:
+      name: mysql
+  replicas: 2
+  volumeClaimTemplates:
+    - metadata:
+        name: mypvc
+      spec:
+        resources:
+          requests:
+            storage: 50Mi
+        volumeMode: Filesystem
+        accessModes:
+          - ReadWriteOnce
+
+```
+
 ## Storage class
 
 - Required if used with cloud providers
