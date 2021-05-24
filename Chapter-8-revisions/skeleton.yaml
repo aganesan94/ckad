@@ -1,3 +1,16 @@
+
+apiVersion: v1
+kind: StorageClass
+metadata:
+  name: 
+provisioner:
+property:
+  type:
+allowVolumeMountExpansion:
+volumeBindingMode:
+
+
+---
 apiVersion: v1
 kind: Pod
 metadata:
