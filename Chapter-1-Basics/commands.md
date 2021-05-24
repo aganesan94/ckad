@@ -78,3 +78,9 @@ docker create volume <volume-name>
 ```
 docker run -v <volume-name-on-host>:<mount-insisde-container> <image-name>
 ```
+
+###Executing a command in the bash
+
+```
+kubectl exec webapp -- cat /log/app.log
+```

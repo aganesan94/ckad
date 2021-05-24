@@ -130,11 +130,13 @@ Three types of PVC
 
 Use cases around the pvc, pv and pods
 
-- If a pod is associated to the PVC, any attempt to delete the PVC, the PVC will be stuck in terminating state. On deleting the pod PVC will be deleted.
+- If a pod is associated to the PVC, any attempt to delete the PVC, the PVC will be stuck in *terminating* state. On deleting the pod PVC will be deleted.
  
-- If a PVC is associated to the PV, and the PVC is deleted and the PV is in *Retain* *persistentVolumeClaimMode*, then the PV has to be manually deleted.If it is in *Recycle* it will be automatically deleted.
+- If a PVC is associated to the PV, and the PVC is deleted and the PV is in *persistentVolumeClaimMode=Retain*, then the PV has to be manually deleted.If it is in *Recycle* it will be automatically deleted.
 
-- The PVC is associated to the PV only if a pod is scheduled and not just by finding a match provided the VolumeBindingMode of PV is set to *WaitForFirstConsumer*
+- On successful deletion of PVC, and if the PV has *persistentVolumeClaimMode=Retain*, it will be in status Released
+
+- The PVC is associated to the PV only if a pod is scheduled and not just by finding a match provided the VolumeBindingMode of StorageClass is set to *WaitForFirstConsumer*
 - 
 ```
 kubectl get pv
