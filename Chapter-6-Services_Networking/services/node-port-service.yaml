@@ -1,0 +1,13 @@
+apiversion: v1
+kind: Service
+metadata:
+  name: node-port-service
+spec:
+  type: NodePort
+  ports:
+    - port: 80 # Only mandatory field
+      targetPort : 80 # Port on which the pod is listening
+      nodePort: 30009 # port used by the node
+  selector: # Should match what is in the pod metadata - > labels
+    app: myapp
+    type: front-end

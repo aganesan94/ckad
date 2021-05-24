@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-job
+spec:
+  completions: 3
+  parallelism: 3
+  template:
+    spec:
+      containers:
+        - name: mypod
+          image: ubuntu:latest
+          command: ['expr','2','+',"3"]
+      # Always, OnFailure, and Never      
+      # Default is Always
+      restartPolicy: Never

@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    name: myapp
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      requests:
+
+        #Gibibyte, Mebibyte, Kibibyte
+        memory: "128Mi"
+
+        # vcpu - m refers to milli, lowest value is the latest 1m, 0.1=100m
+        # 1m = vpcu AWS, 1 Azure Core
+        cpu: "500m"
+      limits:
+
+        #Gibibyte, Mebibyte, Kibibyte
+        # Default is 512Mi
+        memory: "512Mi"
+
+        # vcpu - m refers to milli, lowest value is the latest 1m, 0.1=100m
+        # 1m = 1 vpcu AWS, 1 Azure Core
+        # Default is 1vcpu
+        cpu: "1000m"
+    ports:
+      - containerPort: 80

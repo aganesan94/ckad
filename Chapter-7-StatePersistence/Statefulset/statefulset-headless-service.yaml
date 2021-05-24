@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-hservice
+spec:
+  type: NodePort
+  ports:
+    - port: 3306
+  selector:
+    name: mysql
+  clusterIP: None

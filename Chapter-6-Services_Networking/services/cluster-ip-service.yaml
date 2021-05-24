@@ -1,0 +1,12 @@
+apiversion: v1
+kind: Service
+metadata:
+  name: cluster-ip-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80 # Only mandatory field
+      targetPort : 80 # Port on which the pod is listening
+  selector: # Should match what is in the pod metadata - > labels
+    app: myapp
+    type: front-end

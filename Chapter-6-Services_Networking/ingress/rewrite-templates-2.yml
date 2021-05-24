@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: ingress-space
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: "/wear"
+        backend:
+          service:
+            name: wear-service
+            port:
+              number: 8080
+      - pathType: ImplementationSpecific
+        path: "/watch"
+        backend:
+          service:
+            name: video-service
+            port:
+              number: 8080
+
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   namespace: critical-space
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+# spec:
+#   rules:
+#     - http:
+#         paths:
+#           - path: /pay
+#             pathType: ImplementationSpecific
+#             backend:
+#               serviceName: pay-service
+#               servicePort: 8080              

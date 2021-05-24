@@ -1,0 +1,31 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: standard
+
+# Storage class provider  
+provisioner: kubernetes.io/aws-ebs
+
+#Storage Classes have parameters that describe volumes belonging to the storage class
+#Parameters are specific to vendors as an example
+# provisioner: kubernetes.io/aws-ebs
+# parameters:
+#  type: io1
+#  iopsPerGB: "10"
+#  fsType: ext4
+parameters:
+  type: gp2
+
+
+# Retain - Manually associated/disassociated
+# Delete - defaults
+reclaimPolicy: Retain
+
+# Allows for expansion of volume
+allowVolumeExpansion: true
+mountOptions:
+  - debug
+
+# Immediate: When the PVC is created it is bound (Default)
+# WaitForFirstConsumer: Only when the pod is mounted to a pvc
+volumeBindingMode: Immediate

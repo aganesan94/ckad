@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-statefulset
+spec:
+  serviceName: <same-as-headless-service>
+  template:
+    metadata:
+      labels:
+        name: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql
+          ports:
+            - containerPort: 3306
+      
+      # Needs to be added only to deployment
+      # subdomain: <name-of-headless-service>
+      # hostname: mysql-pod
+  selector:
+    matchLabels:
+      name: mysql
+  replicas: 2
+
+  

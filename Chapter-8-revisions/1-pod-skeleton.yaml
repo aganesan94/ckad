@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: <name>
+  label:
+    <key>: <value>
+spec:
+  containers:
+  - name: 
+    image: <image-name-in-repo>:<version>
+    env:
+      - name:
+        value: 
+      - name:
+        valueFrom:
+          configKeyMapRef:
+            name:
+            key:
+      - name:
+        valueFrom:
+          secretKeyMapRef:
+            name:
+            key:        
+    envFrom:
+      - secretRef:
+          name:
+      - configMapRef:
+          name:
+    resources: # resources requested and limits
+      request:
+        cpu:
+        memory:
+      limits:
+        cpu:
+        memory:
+    command: # Dockerfile entry override
+      - ""
+      - ""
+    args: # Dockerfile command override
+      - ""
+    ports:
+    - containerPort: <container-port>
+    volumeMounts:
+      - name: <same-name-as-volume-mount>
+        mountPath: <container-path>
+  volumes:
+    - name:
+      hostPath:
+        path: 
+        type: 
+    - name:
+      persistentVolumeClaim:
+        claimName: 

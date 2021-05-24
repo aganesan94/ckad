@@ -1,0 +1,18 @@
+# This way is used to mount a config map as a volume.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-sleeper
+spec:
+  containers:
+  - name: ubuntu-sleeper-2
+    image: ubuntu-sleeper-2
+    volumeMounts:
+    - mountPath: /etc/config
+      name: config-volume
+
+  # This can be viewed using ls /etc/config/<key>      
+  volumes:
+    - name: config-volume
+      configMap:
+        name: my-config-map

@@ -1,0 +1,15 @@
+# This methodology is used to inject only a desired Value to the environment variable
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-sleeper
+spec:
+  containers:
+  - name: ubuntu-sleeper-2
+    image: ubuntu-sleeper-2
+    env:
+    - name: APP_COLOR
+      valueFrom:
+        configMapKeyRef: 
+          name: my-config-map
+          key: APP_COLOR

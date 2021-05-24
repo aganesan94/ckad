@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: data-learning
+spec:
+  containers:
+    - name: data-learning
+      image: data-learning
+  nodeSelector:
+    size: large

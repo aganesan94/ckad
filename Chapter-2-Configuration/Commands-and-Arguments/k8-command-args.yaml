@@ -1,0 +1,15 @@
+# Refer to readme.md for creation of the ubuntu-sleeper2.0
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-sleeper
+spec:
+  containers:
+  - name: ubuntu-sleeper-2
+    image: ubuntu-sleeper-2
+    # Corresponds to ENTRY point instruction in the Docker file
+    # This overrides the entry point in the Docker file if one does not exist.
+    command: ["sleep"]
+    # Corresponds to CMD instructions in the Docker file
+    # This overrides the CMD in the Docker file if one does not exist.
+    args: ["5"]

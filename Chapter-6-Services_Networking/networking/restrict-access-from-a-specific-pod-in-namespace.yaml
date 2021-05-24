@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: use-case-2-networking-policy
+spec:
+  # to which pod does it apply to?
+  podSelector:
+    matchLabels:
+      name: db
+  # type what type?
+  policyTypes:
+    - Ingress
+
+  # from which pod?
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              name: api-pod
+        - namespaceSelector:
+            matchLabels:
+              name: prod
+        ports:
+          - protocol: TCP
+            port: 3306
