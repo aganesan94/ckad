@@ -49,7 +49,7 @@ kubectl scale rs
 kubectl expose pod redis --port=6379 --name redis-service -o yaml
 kubectl create service nodeport redis --tcp=6379:6379 -node-port=30080 -o yaml --dry-run=client
 kubectl create service clusterip redis --tcp=80:80 -o yaml
-kubectl create service clusterip my-svc --clusterip="None" -o yaml --dry-run=client 
+kubectl create service clusterip redis --clusterip="None" -o yaml --dry-run=client 
 ```
 
 Creates a service and pod with the same name in a single command
