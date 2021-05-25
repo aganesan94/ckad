@@ -93,6 +93,10 @@ To rollback to the previous version of the deployment
 kubectl rollback undo deployment/<object>
 ```
 
+#### References
+https://blog.container-solutions.com/kubernetes-deployment-strategies
+
+
 #### Creating a deployment, verifying rollout status and history
 
 ```
@@ -116,6 +120,8 @@ kubectl rollout history deployment/nginx
 > The --revision command provides information abot a specific revision
 
 ---
+
+
 
 # Workloads
 

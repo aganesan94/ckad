@@ -1,3 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name:
+spec:
+  podSelector:
+    matchLabels:
+      label1: value1
+      label2: value2
+    # match Label expressions can also be used, remember the operators In and Notin
+    # matchExpressions:
+    # - key:
+    #   operator: In, NotIn, Exists, DoesNotExist, Gt, Lt
+    #   values:
+        -        
+  policyTypes:
+    - Ingress
+
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          label1: value1
+          label2: value2
+    
+    - namespaceSelector:
+        matchExpressions:
+        - key: 
+          operator:
+          values:
+          -
+          -
+      ports:
+        - protocol: 
+          port: 
+---
 apiVersion: v1
 kind: Service
 metadata:

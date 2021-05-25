@@ -10,3 +10,4 @@
 | Deployment | apps/v1 |
 | StatefulSet | apps/v1 |
 | StorageClass | storage.k8s.io/v1 |
+| NetworkPolicy | networking.k8s.io/v1 |

@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: mysql-hservice
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 3306
   selector:

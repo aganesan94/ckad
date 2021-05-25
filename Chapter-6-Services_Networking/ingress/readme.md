@@ -2,7 +2,7 @@
 
 Ingress - Layer 7 architecture which supports SSL and also route mapping
 
-Types of ingress controllers available t o work with K8s include
+Types of ingress controllers available to work with K8s include
 
 * ISTIO
 * HAPROXY
@@ -29,3 +29,4 @@ kubectl get ingress
 
 Reference
 https://kubernetes.github.io/ingress-nginx/examples/
+
