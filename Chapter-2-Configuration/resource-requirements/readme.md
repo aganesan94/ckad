@@ -11,4 +11,4 @@ There are 3 attributes as far as resource requirements for consideration
 * K8 will have the pod in "pending" state you will find a reason on why it is in pending state. It is also possible that the schedule was not able to schedule the pod on a node as no nodes are available.
 * K8 throttles CPU if it goes greater than the limit, containers can use more memory than the limit, but not CPU. Constant use of high memory will cause the pod to terminate.
 
- - CrashLoopBackOff indicates that it is failing because the pod is out of memory
+ - CrashLoopBackOff usually, indicates that it is failing because the pod is out of memory

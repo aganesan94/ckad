@@ -8,13 +8,13 @@
 
 ## Readiness Probe
 
-- Kubelet uses this probe to find outout when the container is ready to start acepting traffic.
+- Kubelet uses this probe to find out when the container is ready to start acepting traffic.
 - All of its containers need to be ready for the probe to succeed.
 - The pods which are not ready are removed from the load balancers
   
 ## Liveness Probe
 
-- Useed to restart a container to make sure it is back online in case of deadlocks or bugs
+- Used to restart a container to make sure it is back online in case of deadlocks or bugs.
 
 ## Startup Probes
 

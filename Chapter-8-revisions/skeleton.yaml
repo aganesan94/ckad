@@ -1,4 +1,22 @@
 apiVersion: v1
+kind: Secret
+metadata:
+  name:
+data:
+  key1: value1
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name:
+data:
+  key1: value1
+
+---
+
+apiVersion: batch/v1
 kind: Job
 metadata:
   name:
@@ -6,18 +24,19 @@ spec:
   completions:
   parallelism:
   template:
-    metadata:
-      name:
-    containers:
-    - name:
-      image:
-      command:
-      -
-      -
+    spec:
+      metadata:
+        name:
+      containers:
+      - name:
+        image:
+        command:
+        -
+        -
 
 ---
 
-apiVersion: v1
+apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name:
@@ -28,14 +47,15 @@ spec:
       completions:
       parallelism:
       template:
-        metadata:
-          name:
-        containers:
-        - name:
-          image:
-          command:
-          -
-          -
+        spec:
+          metadata:
+            name:
+          containers:
+          - name:
+            image:
+            command:
+            -
+            -
 
 
 
@@ -142,6 +162,25 @@ spec:
   containers:
   - name: 
     image: <image-name-in-repo>:<version>
+
+    # same parameters for readinessProbe
+    livenessProbe:
+      initialDelaySeconds: 
+      periodSeconds:
+      failureThreshold:
+     
+      httpGet:
+        path:
+        port:
+
+      # exec:
+      #   command:
+      #   -
+      #   -
+
+      # tcpSocket:
+      #   port:
+
     env:
       - name:
         value: 

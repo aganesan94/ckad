@@ -52,7 +52,7 @@
 
 ## Condition Status
 
-### Pod Scheduled
-### Initialized
-### Container Ready
-### Ready
+- Pod Scheduled
+- Initialized
+- Container Ready
+- Ready

@@ -50,6 +50,11 @@ kubectl logs -f job my-job
 kubectl delete job my-job
 ```
 
+```
+'kubectl describe job <job-name>
+```
+
+
 To increase the number of pods use the following parameter in the definition file.
 
 > completions
