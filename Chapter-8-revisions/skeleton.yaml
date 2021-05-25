@@ -1,3 +1,45 @@
+apiVersion: v1
+kind: Job
+metadata:
+  name:
+spec:
+  completions:
+  parallelism:
+  template:
+    metadata:
+      name:
+    containers:
+    - name:
+      image:
+      command:
+      -
+      -
+
+---
+
+apiVersion: v1
+kind: CronJob
+metadata:
+  name:
+spec:
+  schedule:
+  jobTemplate:
+    spec:
+      completions:
+      parallelism:
+      template:
+        metadata:
+          name:
+        containers:
+        - name:
+          image:
+          command:
+          -
+          -
+
+
+
+---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:

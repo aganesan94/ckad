@@ -128,16 +128,17 @@ Three types of PVC
 * Dynamic - Cluster dynamically provisions a claim
 * Binding - User created or dynamically created, control loop in master watches the new pvcs finds a match if possible.
 
-Use cases around the pvc, pv and pods
+Use cases around the deletion of pvc, pv and pods
 
 - If a pod is associated to the PVC, any attempt to delete the PVC, the PVC will be stuck in *terminating* state. On deleting the pod PVC will be deleted.
  
-- If a PVC is associated to the PV, and the PVC is deleted and the PV is in *persistentVolumeClaimMode=Retain*, then the PV has to be manually deleted.If it is in *Recycle* it will be automatically deleted.
+- If a PVC is associated to the PV, and the PVC is deleted and the PV is in *persistentVolumeClaimMode=Retain*, then the PV has to be manually deleted.If it is in *Recycle* it will be automatically deleted. 
 
 - On successful deletion of PVC, and if the PV has *persistentVolumeClaimMode=Retain*, it will be in status Released
 
 - The PVC is associated to the PV only if a pod is scheduled and not just by finding a match provided the VolumeBindingMode of StorageClass is set to *WaitForFirstConsumer*
-- 
+
+
 ```
 kubectl get pv
 kubectl get pvc
