@@ -10,18 +10,18 @@ spec:
     image: nginx
     ports:
       - containerPort: 80
-    tolerations: # can have one or many tolerations
-    - key: # key refers to the taint
-      operator: # Defaults to Equal, other options include Exists
-      value: # Optional in case of #Exists, requiremd in case of # Equal
-      #NoSchedule - do not schedule on the node with a taint
-      #NoExecute = If the pod is running on the node, it will be evicted, no further pods with the toleration will be scheduled on the node with the toleration.
-      #PreferNoSchedule: Prefer not to schedule the pod on the node
-      # No Execute has the following repercussions
-      # pods that do not tolerate the taint are evicted immediately
-      # pods that tolerate the taint without specifying tolerationSeconds in their toleration specification remain bound forever
-      # pods that tolerate the taint with a specified tolerationSeconds remain bound for the specified amount of time
-      effect: 
+  tolerations: # can have one or many tolerations
+  - key: # key refers to the taint
+    operator: # Defaults to Equal, other options include Exists
+    value: # Optional in case of #Exists, requiremd in case of # Equal
+    #NoSchedule - do not schedule on the node with a taint
+    #NoExecute = If the pod is running on the node, it will be evicted, no further pods with the toleration will be scheduled on the node with the toleration.
+    #PreferNoSchedule: Prefer not to schedule the pod on the node
+    # No Execute has the following repercussions
+    # pods that do not tolerate the taint are evicted immediately
+    # pods that tolerate the taint without specifying tolerationSeconds in their toleration specification remain bound forever
+    # pods that tolerate the taint with a specified tolerationSeconds remain bound for the specified amount of time
+    effect: 
 
-      #tolerationSeconds: Added only when NoExecute exists, tolerate for a given amount of time before evicting
-      tolerationSeconds:
+    #tolerationSeconds: Added only when NoExecute exists, tolerate for a given amount of time before evicting
+    tolerationSeconds:
