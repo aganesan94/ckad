@@ -27,6 +27,7 @@ selector:
 # Select the pods with a particular label
 
 ```
+kubectl get nodes --show-labels
 kubectl get all -l env=prod  
 kubectl get pods -l <key>=<value>
 kubectl get pods -l <key1>=<value1>,<key2>=<value2>
@@ -108,6 +109,13 @@ kubectl set image deployment nginx <container-name>=nginx:latest --record
 kubectl rollout history deployment/nginx
 kubectl edit deployments. nginx --record
 kubectl rollout history deployment/nginx
+
+kubectl set image deployment/frontend www=image:v2               # Rolling update "www" containers of "frontend" deployment, updating the image
+kubectl rollout history deployment/frontend                      # Check the history of deployments including the revision 
+kubectl rollout undo deployment/frontend                         # Rollback to the previous deployment
+kubectl rollout undo deployment/frontend --to-revision=2         # Rollback to a specific revision
+kubectl rollout status -w deployment/frontend                    # Watch rolling update status of "frontend" deployment until completion
+kubectl rollout restart deployment/frontend                      # Rolling restart of the "frontend" deployment
 
 ```
 
