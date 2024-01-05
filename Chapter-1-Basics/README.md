@@ -1,5 +1,12 @@
 # Basics
 
+<!-- TOC -->
+* [Basics](#basics)
+  * [Pre-requisites](#pre-requisites)
+  * [K8s concepts](#k8s-concepts)
+    * [PODS](#pods)
+<!-- TOC -->
+
 ## Pre-requisites
 * vi-cheatsheet: https://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf
 * Only k8s docs are permitted: https://kubernetes.io/docs/home/
