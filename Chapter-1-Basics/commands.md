@@ -24,16 +24,7 @@ kubectl delete <object-type> <object-name> -n <namespace>
 
 
 
-# PODS
 
-```
-kubectl run <image-name>
-kubectl run <pod-name> --image <image-name:version>
-kubectl get pods -o wide
-
-#Force Delete the pod
-kubectl delete pod <pod-name> -n <namespace> --force
-```
 
 # Replica Set
 
