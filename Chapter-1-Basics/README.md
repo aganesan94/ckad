@@ -94,3 +94,5 @@ kubectl edit pod <pod-name>
   cluster
 * ReplicaSets are the new way to avoid the use cases as opposed to
   Replication Controller
+
+![Alt Basics](./docs/images/replication-controller-basic-definition.png)
