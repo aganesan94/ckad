@@ -15,14 +15,13 @@
 * Arun's CKAD Book: https://github.com/aganesan94/ckad
 * Install minikube and kubectl
 * Set up kubectl  as alias using the quick reference https://kubernetes.io/docs/reference/kubectl/quick-reference/
-
 ---
 
 ![Alt Basics]( ./docs/images/basics.png)
 
 ## K8s concepts
 
-### PODS
+### Pods
 
 * Smallest object your can create in K8
 * Contains one or more containers. Containers cannot be of the same type cannot be run on a pod
@@ -82,8 +81,16 @@ kubectl describe pod <pod-name>
 # in the pod look at the "status" column using the following command
 kubectl get pods 
 
-# Edit a pod
-# Change some parameters
-# Write to a file
+# Edit a pod, Change some parameters, Write to a file
 kubectl edit pod <pod-name>
 ```
+
+### Replication Controllers and Replica Sets
+
+* When pods die, they don't come back up automatically
+* Replication Controllers ensure that pods can be up and running if pods
+   get deleted.
+* They allow for load sharing within pods across multiple nodes in k8s
+  cluster
+* ReplicaSets are the new way to avoid the use cases as opposed to
+  Replication Controller
