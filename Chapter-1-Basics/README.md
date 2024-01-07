@@ -134,7 +134,7 @@ kubectl apply (-f FILENAME | -k DIRECTORY)
   * kind is correctly defined
 * Whenever a replica set is edited, delete the pods so it picks up
    the new definition.
-
+* Check if it has the right image
 
 #### Commands
 ```shell
@@ -160,6 +160,60 @@ kubectl get replicasets
 kubectl get rs | wc -l
 
 ## Edit the replicaset directly
+# delete the pods to reflect the state of the
+# edited replicaset
 kubectl edit rs <rs-name>
 k delete po $(k get po  | grep <rs-name> | awk '{print $1}')
+```
+
+### Deployments
+
+A deployment is a higher-level object that provides advanced features such as rolling updates, 
+rollbacks, and self-healing capabilities, while a replicaset is a lower-level object that is 
+responsible for ensuring that a specified number of replicas are always running.
+
+* Rolling Updates: Rolling updates ensure that an application is updated gradually, one replica at a time, while ensuring that the overall availability of the application is not impacted. In comparison, ReplicaSets only support scaling and managing replicas.
+* Rollback: Deployments automatically rollback to a previous version of an application if an update fails. For ReplicaSets, this process would need to be manually performed.
+* Version Control: Similar to the previous feature, Deployments implement version control, hence allowing for the ability to rollback to a previous specific version.
+
+* Check if you are in right namespace
+* Check for the following
+    * label match between template and selector
+    * apiVersion is correct at all times as per the spec
+    * kind is correctly defined
+* Whenever a replica set is edited, delete the pods so it picks up
+  the new definition.
+* Check if it has the right image
+
+![Alt Basics](./docs/images/deployment-set-basic-definition.png)
+
+```shell
+# Show all the objects created in the cluster
+kubectl get all
+
+# If you need to know all the events occuring the cluster
+# typically done to troubleshoot then this will provide you
+# all information
+kubectl get events
+kubectl get ev
+
+# Create a deployment with a specific nginx version
+# Every rollout of a deployment creates a revision
+# Check out the  status of the deployment "status"
+# Check out the revision status by using the "history"
+# Update the version of nginx 
+# Perform another deployment (by editing a file or using kubectl apply)
+# Check the rollout history
+# There are 2 deployment strategies
+# Recreate - describing the deployment shows the scale down to 0
+# RollingUpdate - describing the deployment shows the pods rolling one by one.
+kubectl rollout status  deployment <deploymentname>
+kubectl rollout history deployment <deploymentname>
+
+# Undo and rollback to previous 
+kubectl rollout undo deployment <deploymentname>
+
+# Imperative command to update the image in the deployment
+kubectl set image deployment/<deployment-name> <container-name>=<image:version>
+
 ```
