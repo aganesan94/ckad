@@ -280,6 +280,28 @@ The type property in the Service's spec determines how the service is exposed to
 
 ##### Example
 
+```shell
+nodePort : The port on the node where external traffic will come in on
+port : The port of this service
+targetPort The target port on the pod(s) to forward traffic to
+```
+
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-service 
+  namespace: default
+spec:
+  ports:
+  - nodePort: 30080
+    port: 8080
+    targetPort: 8080
+  selector:
+    name: simple-webapp
+  type: NodePort
+```
 ![Alt Basics](./docs/images/services-demo.png)
 
 Accessing the service with a url 
@@ -287,6 +309,7 @@ Accessing the service with a url
 ```shell
 minikube service <service-name> --url
 ```
+
 
 # API Versions
 
