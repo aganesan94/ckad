@@ -278,6 +278,15 @@ The type property in the Service's spec determines how the service is exposed to
 
 ![Alt Basics](./docs/images/services.png)
 
+##### Example
+
+![Alt Basics](./docs/images/services-demo.png)
+
+Accessing the service with a url 
+
+```shell
+minikube service <service-name> --url
+```
 
 # API Versions
 
