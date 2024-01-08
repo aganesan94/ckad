@@ -3,6 +3,7 @@
 <!-- TOC -->
 * [Basics](#basics)
   * [Pre-requisites](#pre-requisites)
+  * [Kubernetes Overview](#kubernetes-overview)
   * [K8s concepts](#k8s-concepts)
     * [Pods](#pods)
       * [Commands](#commands)
@@ -21,6 +22,8 @@
 * Install minikube and kubectl
 * Set up kubectl  as alias using the quick reference https://kubernetes.io/docs/reference/kubectl/quick-reference/
 ---
+
+## Kubernetes Overview
 
 ![Alt Basics]( ./docs/images/basics.png)
 
