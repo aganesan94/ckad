@@ -271,7 +271,7 @@ The type property in the Service's spec determines how the service is exposed to
 * What this means is that when you create a NodePort Service, Kubernetes automatically creates a ClusterIP Service for it as well. The node receives the request, the NodePort Service picks it up, it sends it to the ClusterIP Service, and this, in turn, sends it to one of the Pods behind it (External Client->Node->NodePort->ClusterIP->Pod). And the extra benefits are that internal clients can still access those Pods, and quicker. 
 * They can just skip going through the NodePort and reach the ClusterIP directly to connect to one of the Pods.
 
-##### LoadBalancer – 
+##### LoadBalancer
 * The service becomes accessible externally through a cloud provider's load balancer functionality. GCP, AWS, Azure, and OpenStack offer this functionality.
 
 ##### Summary
