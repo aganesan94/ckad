@@ -10,9 +10,17 @@
     * [Replication Controllers and Replica Sets](#replication-controllers-and-replica-sets)
       * [Commands](#commands-1)
     * [Deployments](#deployments)
+      * [Commands](#commands-2)
+    * [Recommended reading](#recommended-reading)
+    * [Services](#services)
+      * [Types of Services](#types-of-services)
+        * [ClusterIP](#clusterip-)
+        * [NodePort](#nodeport)
+        * [LoadBalancer –](#loadbalancer--)
+        * [Summary](#summary)
 * [API Versions](#api-versions)
+* 
 <!-- TOC -->
-
 ## Pre-requisites
 * vi-cheatsheet: https://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf
 * Only k8s docs are permitted: https://kubernetes.io/docs/home/
@@ -195,6 +203,8 @@ responsible for ensuring that a specified number of replicas are always running.
 
 ![Alt Basics](./docs/images/deployment-set-basic-definition.png)
 
+#### Commands
+
 ```shell
 # Show all the objects created in the cluster
 kubectl get all
@@ -228,7 +238,51 @@ kubectl rollout undo deployment <deploymentname>
 kubectl set image deployment/<deployment-name> <container-name>=<image:version>
 ```
 
+### Recommended reading
+
+* Difference between the different controllers is an essential read
+https://semaphoreci.com/blog/replicaset-statefulset-daemonset-deployments
+
+### Services
+
+What does ClusterIP, NodePort, and LoadBalancer mean?
+The type property in the Service's spec determines how the service is exposed to the network. The possibles are ClusterIP, NodePort, and LoadBalancer
+
+* In kubernetes a service always enables its network access to a pod or set of pods
+* Services will select the pods based on their labels and when a network is made to those services it selects all Pods in the cluster matching the service’s selector and will choose one of them, and then will forwards the network request to it.
+* A deployment is responsible for keeping a set of pods running in a cluster. A service is responsible for enabling network access to a set of pods in a cluster
+
+
+#### Types of Services
+
+##### ClusterIP 
+* The default value. The service is only accessible from within the Kubernetes cluster
+* In Kubernetes, the ClusterIP Service is used for Pod-to-Pod communication within the same cluster. 
+* This means that a client running outside of the cluster, such as a user accessing an application over the internet, cannot directly access a ClusterIP Service.
+* When a ClusterIP Service is created, it is assigned a static IP address. This address remains the same for the lifetime of the Service. When a client sends a request to the IP address, the request is automatically routed to one of the Pods behind the Service. 
+* If multiple Pods are associated, the ClusterIP Service uses load balancing to distribute traffic equally among them. 
+
+##### NodePort
+* This makes the service accessible on a static port on each Node in the cluster.
+* The NodePort Service is a way to expose your application to external clients. 
+* An external client is anyone who is trying to access your application from outside of the Kubernetes cluster.
+* The NodePort Service does this by opening the port you choose (in the range of 30000 to 32767) on all worker nodes in the cluster. This port is what external clients will use to connect to your app.
+* NodePort Service builds on top of the ClusterIP Service type. 
+* What this means is that when you create a NodePort Service, Kubernetes automatically creates a ClusterIP Service for it as well. The node receives the request, the NodePort Service picks it up, it sends it to the ClusterIP Service, and this, in turn, sends it to one of the Pods behind it (External Client->Node->NodePort->ClusterIP->Pod). And the extra benefits are that internal clients can still access those Pods, and quicker. 
+* They can just skip going through the NodePort and reach the ClusterIP directly to connect to one of the Pods.
+
+##### LoadBalancer – 
+* The service becomes accessible externally through a cloud provider's load balancer functionality. GCP, AWS, Azure, and OpenStack offer this functionality.
+
+##### Summary
+
+![Alt Basics](./docs/images/services.png)
+
+
 # API Versions
+
+Note: Make sure to pay attention to the versions to ensure the pods are up and running
+and are working.
 
 | Kind/Type| Versions |
 |----------|------:|
