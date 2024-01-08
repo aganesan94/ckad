@@ -4,7 +4,12 @@
 * [Basics](#basics)
   * [Pre-requisites](#pre-requisites)
   * [K8s concepts](#k8s-concepts)
-    * [PODS](#pods)
+    * [Pods](#pods)
+      * [Commands](#commands)
+    * [Replication Controllers and Replica Sets](#replication-controllers-and-replica-sets)
+      * [Commands](#commands-1)
+    * [Deployments](#deployments)
+* [API Versions](#api-versions)
 <!-- TOC -->
 
 ## Pre-requisites
@@ -197,6 +202,9 @@ kubectl get all
 kubectl get events
 kubectl get ev
 
+# Record the deployment so it can register history
+kubectl create -f <deployment-file> --record 
+
 # Create a deployment with a specific nginx version
 # Every rollout of a deployment creates a revision
 # Check out the  status of the deployment "status"
@@ -215,5 +223,27 @@ kubectl rollout undo deployment <deploymentname>
 
 # Imperative command to update the image in the deployment
 kubectl set image deployment/<deployment-name> <container-name>=<image:version>
-
 ```
+
+# API Versions
+
+| Kind/Type| Versions |
+|----------|------:|
+| Pod | v1 |
+| Service | v1 |
+| PersistentVolume | v1 |
+| PersistentVolumeClaim | v1 |
+| Job | batch/v1 |
+| CronJob | batch/v1beta1 |
+| ConfigMap | v1 |
+| Secret | v1 |
+| ServiceAccount | v1 |
+| Namespace | v1 |
+| ReplicationController | v1 |
+| ReplicaSet | apps/v1 |
+| Deployment | apps/v1 |
+| StatefulSet | apps/v1 |
+| StorageClass | storage.k8s.io/v1 |
+| NetworkPolicy | networking.k8s.io/v1 |
+
+
