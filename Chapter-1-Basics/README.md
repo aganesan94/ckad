@@ -16,7 +16,7 @@
     * [Recommended reading](#recommended-reading)
     * [Services](#services)
       * [Types of Services](#types-of-services)
-        * [ClusterIP](#clusterip-)
+        * [ClusterIP](#clusterip)
         * [NodePort](#nodeport)
         * [LoadBalancer](#loadbalancer)
         * [Summary](#summary)
