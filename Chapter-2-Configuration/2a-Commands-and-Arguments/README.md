@@ -39,12 +39,13 @@ FROM UBUNTU
 ENTRYPOINT ["sleep"]
 CMD 5
 
-# Passing an environment variable using the run command
-docker run -e APP_COLOR=pink simple-webapp-color
-
 # Keep docker container running for debuggin
 ENTRYPOINT ["tail"]
 CMD ["-f","/dev/null"]
+
+# Passing an environment variable using the run command
+docker run -e APP_COLOR=pink simple-webapp-color
+
 ```
 
 ### Legible way of passing arguments
@@ -53,5 +54,8 @@ CMD ["-f","/dev/null"]
 ## K8s CMD vs ENTRYPOINT
 
 ![Alt Basics](./docs/images/docker-cmd-entrypoint-translation-in-k8s.png)
+
+## Defining commands
+![Alt Basics](./docs/images/defining-commands-args.png)
 
 
