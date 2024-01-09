@@ -119,6 +119,27 @@ kubectl create -f <file-name-definition> - Imperative command
 kubectl apply (-f FILENAME | -k DIRECTORY)
 ```
 
+#### Note when editing pods
+
+```shell
+# Editing pods is not possible for the following specification
+# spec.containers[*].image
+#spec.initContainers[*].image
+# spec.activeDeadlineSeconds
+# spec.tolerations
+
+# The best way to edit a running pod is to do the following steps
+
+# 1. Get the description of a pod write to a yaml file
+kubectl get pod <pod-name> -o yaml > temp-pod-defn.yml
+# 2 - Open the yaml file to edit and make the changes
+nano temp-pod-defn.yml
+# 3 - Delete the current pod
+kubectl delete pod <pod-name>
+# 4- Create the pod again from the file
+kubectl create -f temp-pod-defn.yml
+```
+
 ### Replication Controllers and Replica Sets
 
 * Short hand is "rs"
@@ -229,6 +250,14 @@ kubectl rollout undo deployment <deploymentname>
 # Imperative command to update the image in the deployment
 kubectl set image deployment/<deployment-name> <container-name>=<image:version>
 ```
+
+#### Note when editing deployments directly
+With Deployments you can easily edit any field/property of the POD template. Since the pod template is a child of the deployment specification, with every change the deployment will automatically delete and create a new pod with the new changes. So if you are asked to edit a property of a POD part of a deployment you may do that simply by running the command
+
+```shell
+kubectl edit deployment <deployment-name>
+```
+
 
 ### Recommended reading
 
