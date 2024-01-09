@@ -2,7 +2,6 @@
 
 <!-- TOC -->
 * [Basics](#basics)
-  * [Pre-requisites](#pre-requisites)
   * [Kubernetes Overview](#kubernetes-overview)
   * [K8s concepts](#k8s-concepts)
     * [Pods](#pods)
@@ -16,20 +15,13 @@
       * [Types of Services](#types-of-services)
         * [ClusterIP](#clusterip-)
         * [NodePort](#nodeport)
-        * [LoadBalancer –](#loadbalancer--)
+        * [LoadBalancer](#loadbalancer)
         * [Summary](#summary)
+        * [Example](#example)
+    * [Other](#other)
+      * [Commands](#commands-3)
 * [API Versions](#api-versions)
-* 
 <!-- TOC -->
-## Pre-requisites
-* vi-cheatsheet: https://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf
-* Only k8s docs are permitted: https://kubernetes.io/docs/home/
-* Markdown cheatsheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
-* CKAD Practice per topic: https://github.com/dgkanatsios/CKAD-exercises/blob/main/a.core_concepts.md
-* Arun's CKAD Book: https://github.com/aganesan94/ckad
-* Install minikube and kubectl
-* Set up kubectl  as alias using the quick reference https://kubernetes.io/docs/reference/kubectl/quick-reference/
----
 
 ## Kubernetes Overview
 
@@ -308,8 +300,32 @@ Accessing the service with a url
 
 ```shell
 minikube service <service-name> --url
+
+# Exposing a pod with a service
+kubectl expose pod redis --port=6379 --name redis-service -o yaml
+
+# Creating a service with a nodePort, target and containerPorts
+kubectl create service nodeport redis --tcp=6379:6379 -node-port=30080 -o yaml --dry-run=client
+
+# Create a cluster IP for internal communication
+kubectl create service clusterip redis --tcp=80:80 -o yaml --dry-run=client
+kubectl create service clusterip redis --clusterip="None" -o yaml --dry-run=client 
+
+# Creates a service and pod with the same name in a single command
+kubectl run httpd --image=httpd:alpine --port=80 --expose
 ```
 
+### Other
+
+#### Commands
+
+```shell
+# Get cluster-info
+kubectl cluster-info
+
+# Get nodes
+kubectl get nodes
+```
 
 # API Versions
 

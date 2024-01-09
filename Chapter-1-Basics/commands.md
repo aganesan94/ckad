@@ -1,15 +1,5 @@
 
-# Get cluster-info
 
-```
-kubectl cluster-info
-```
-
-# Get nodes
-
-```
-kubectl get nodes
-```
 
 # Create using a definition file
 
@@ -37,16 +27,13 @@ kubectl scale rs
 # Exposing Service
 
 ```
-kubectl expose pod redis --port=6379 --name redis-service -o yaml
-kubectl create service nodeport redis --tcp=6379:6379 -node-port=30080 -o yaml --dry-run=client
-kubectl create service clusterip redis --tcp=80:80 -o yaml
-kubectl create service clusterip redis --clusterip="None" -o yaml --dry-run=client 
-```
-
-Creates a service and pod with the same name in a single command
 
 ```
-kubectl run httpd --image=httpd:alpine --port=80 --expose
+
+
+
+```
+
 ```
 
 # Running commands with --dry-run
