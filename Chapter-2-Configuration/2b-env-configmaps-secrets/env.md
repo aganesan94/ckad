@@ -9,7 +9,7 @@ docker run -e key=val <image-name>
 ### Sample 1:  Basics
 
 ```shell
-k create -f samples/env/samples-1/env.yml
+k create -f samples/environment/samples-1/env.yml
 k get po sample-1-env-pod
 
 # Shell in to check out environment variables
@@ -27,7 +27,7 @@ k describe po sample-1-env-pod
 ### Sample 2: Replacement of environment variables in the definition
 ```shell
 k delete pods --all
-k create -f samples/env/samples-2/env.yml
+k create -f samples/environment/samples-2/env.yml
 k logs -f sample-2-env-pod
 ```
 
