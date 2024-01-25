@@ -1,10 +1,20 @@
 # Environment Variables
 
+<!-- TOC -->
+* [Environment Variables](#environment-variables)
+  * [Setting via Docker](#setting-via-docker)
+  * [K8s](#k8s)
+    * [Sample 1:  Basics](#sample-1-basics)
+    * [Sample 2: Replacement of environment variables in the definition](#sample-2-replacement-of-environment-variables-in-the-definition)
+<!-- TOC -->
+
 ## Setting via Docker
 ```shell
 # Set environment variables via docker
 docker run -e key=val <image-name>
 ```
+
+## K8s
 
 ### Sample 1:  Basics
 
