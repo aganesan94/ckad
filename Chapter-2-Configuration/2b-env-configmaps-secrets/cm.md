@@ -31,10 +31,7 @@ k describe cm cm-sample-1
 #####  Translation of cm definition to a cm object.
 ![Alt Basics](docs/images/cm/sample-1/cm.png)
 
-##### How to use it in the pod?
-
 ```shell
-
 # Create the 2 pods
 kubectl create -f samples/configmaps/sample-1/pod.yml
 k describe po cm-sample-1-pod
@@ -42,14 +39,37 @@ k describe po cm-sample-1-pod
 
 ![Alt Basics](docs/images/cm/sample-1/pod.png)
 
+#### Sample 2 : Create a config map and inherit just one key as a value as an environment variable
 
-#### Sample 2 : With a Volume Mount
+```shell
+k create -f samples/configmaps/sample-2/cm.yml
+k get cm cm-sample-2
+k describe cm cm-sample-2
+
+# Create the 2 pods
+kubectl create -f samples/configmaps/sample-2/pod.yml
+k describe po cm-sample-2-pod
+```
+
+#### Sample 3 : Create a config map and inherit all the values
+
+```shell
+k create -f samples/configmaps/sample-3/cm.yml
+k get cm cm-sample-3
+k describe cm cm-sample-3
+
+# Create the 2 pods
+kubectl create -f samples/configmaps/sample-3/pod.yml
+k describe po cm-sample-3-pod
+```
+
+#### Sample 4 : With a Volume Mount
 
 
 ##### Commands
 ```shell
 
-kubectl create -f samples/configmaps/sample-3/cm.yml
+kubectl create -f samples/configmaps/sample-4/cm.yml
 kubectl get cm game-demo
 kubectl describe cm game-demo
 ```
@@ -110,4 +130,3 @@ ls /config/
 game.properties            user-interface.properties
 ```
 
-#### Sample 2 : With a Volume Mount

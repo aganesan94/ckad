@@ -1,12 +1,14 @@
 # This way is used to inject all the values in the config map to the environment variable
+# This methodology is used to inject only a desired Value to the environment variable
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ubuntu-sleeper
+  name: cm-sample-3-pod
 spec:
   containers:
-  - name: ubuntu-sleeper-2
-    image: ubuntu-sleeper-2
+  - name: cm-sample-3-ctr
+    image: alpine
+    command: ["sleep", "3600"]
     envFrom:
     - configMapRef:
-        name: <config-map-name>
+        name: cm-sample-3
