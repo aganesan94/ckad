@@ -12,5 +12,5 @@ spec:
     - name: APP_COLOR
       valueFrom:
         configMapKeyRef:
-          name: cm-sample-1-cm
+          name: cm-sample-1
           key: APP_COLOR
