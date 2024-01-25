@@ -63,7 +63,7 @@ kubectl apply -f samples/configmaps/sample-3/pod.yml
 k describe po cm-sample-3-pod
 ```
 
-#### Sample 4 : With a Volume Mount
+#### Sample 4 : With a Volume Mount - Importing all Variables
 
 
 ##### Commands
@@ -82,7 +82,7 @@ kubectl describe cm game-demo
 ```shell
 
 # Create the 2 pods
-kubectl apply -f samples/configmaps/sample-3/pod.yml
+kubectl apply -f samples/configmaps/sample-4/pod.yml
 
 # Analysis
 kubectl get po configmap-demo-pod

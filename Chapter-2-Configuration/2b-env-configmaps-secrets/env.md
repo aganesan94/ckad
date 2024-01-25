@@ -32,7 +32,7 @@ DEMO_FAREWELL=Such a sweet sorrow
 k describe po sample-1-env-pod
 ```
 
-![Alt Basics](docs/images/env/sample-1/env.png)
+![Alt Basics](docs/images/environment/sample-1/env.png)
 
 ### Sample 2: Replacement of environment variables in the definition
 ```shell
