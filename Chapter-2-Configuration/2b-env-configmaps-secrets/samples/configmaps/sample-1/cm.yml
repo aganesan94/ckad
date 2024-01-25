@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-sample-1-cm
+data:
+  APP_COLOR: pink
+
