@@ -2,14 +2,17 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ubuntu-sleeper
+  name: cm-sample-2-pod
 spec:
   containers:
-  - name: ubuntu-sleeper-2
-    image: ubuntu-sleeper-2
+  - name: cm-sample-2-ctr
+    image: alpine
+    command: ["sleep", "3600"]
     env:
     - name: APP_COLOR
       valueFrom:
-        configMapKeyRef: 
-          name: my-config-map
+        configMapKeyRef:
+          name: cm-sample-2
           key: APP_COLOR
+
+

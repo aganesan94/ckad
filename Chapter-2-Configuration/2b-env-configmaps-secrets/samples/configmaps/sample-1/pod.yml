@@ -5,7 +5,7 @@ metadata:
   name: cm-sample-1-pod
 spec:
   containers:
-  - name: cm-sample-1-pod
+  - name: cm-sample-1-ctr
     image: alpine
     command: ["sleep", "3600"]
     env:

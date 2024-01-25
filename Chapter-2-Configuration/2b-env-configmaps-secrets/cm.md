@@ -1,22 +1,7 @@
-# Environment, Configmaps and Secrets
+# Config Maps
 
-## Environment Variables
-
-### Setting via Docker
-```shell
-# Set environment variables via docker
-docker run -e key=val <image-name>
-```
-### Setting via K8s
-![Alt Basics](docs/images/env/sample-1/env.png)
----
-
-## Config Maps
 
 * Allows for environment variable reuse
-*  2 stages
-  * Stage 1: Create a configmap
-  * Stage 2: Use a file
 
 ### via CLI using a literal
 ```
@@ -64,7 +49,7 @@ k describe po cm-sample-1-pod
 ##### Commands
 ```shell
 
-kubectl create -f samples/configmaps/sample-2/cm.yml
+kubectl create -f samples/configmaps/sample-3/cm.yml
 kubectl get cm game-demo
 kubectl describe cm game-demo
 ```
@@ -77,7 +62,7 @@ kubectl describe cm game-demo
 ```shell
 
 # Create the 2 pods
-kubectl create -f samples/configmaps/sample-2/pod.yml
+kubectl create -f samples/configmaps/sample-3/pod.yml
 
 # Analysis
 kubectl get po configmap-demo-pod
