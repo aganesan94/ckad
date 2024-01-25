@@ -24,7 +24,7 @@ kubectl create configmap <config-map-name> \
 
 ```shell
 # Create the config map
-k create -f samples/configmaps/sample-1/cm.yml
+k apply -f samples/configmaps/sample-1/cm.yml
 k get cm cm-sample-1
 k describe cm cm-sample-1
 ```
@@ -33,7 +33,7 @@ k describe cm cm-sample-1
 
 ```shell
 # Create the 2 pods
-kubectl create -f samples/configmaps/sample-1/pod.yml
+kubectl apply -f samples/configmaps/sample-1/pod.yml
 k describe po cm-sample-1-pod
 ```
 
@@ -42,24 +42,24 @@ k describe po cm-sample-1-pod
 #### Sample 2 : Create a config map and inherit just one key as a value as an environment variable
 
 ```shell
-k create -f samples/configmaps/sample-2/cm.yml
+k apply -f samples/configmaps/sample-2/cm.yml
 k get cm cm-sample-2
 k describe cm cm-sample-2
 
 # Create the 2 pods
-kubectl create -f samples/configmaps/sample-2/pod.yml
+kubectl apply -f samples/configmaps/sample-2/pod.yml
 k describe po cm-sample-2-pod
 ```
 
 #### Sample 3 : Create a config map and inherit all the values
 
 ```shell
-k create -f samples/configmaps/sample-3/cm.yml
+k apply -f samples/configmaps/sample-3/cm.yml
 k get cm cm-sample-3
 k describe cm cm-sample-3
 
 # Create the 2 pods
-kubectl create -f samples/configmaps/sample-3/pod.yml
+kubectl apply -f samples/configmaps/sample-3/pod.yml
 k describe po cm-sample-3-pod
 ```
 
@@ -69,7 +69,7 @@ k describe po cm-sample-3-pod
 ##### Commands
 ```shell
 
-kubectl create -f samples/configmaps/sample-4/cm.yml
+kubectl apply -f samples/configmaps/sample-4/cm.yml
 kubectl get cm game-demo
 kubectl describe cm game-demo
 ```
@@ -82,7 +82,7 @@ kubectl describe cm game-demo
 ```shell
 
 # Create the 2 pods
-kubectl create -f samples/configmaps/sample-3/pod.yml
+kubectl apply -f samples/configmaps/sample-3/pod.yml
 
 # Analysis
 kubectl get po configmap-demo-pod
