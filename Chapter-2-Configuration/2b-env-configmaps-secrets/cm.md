@@ -4,16 +4,14 @@
 * [Config Maps](#config-maps)
     * [via CLI using a literal](#via-cli-using-a-literal)
     * [Via CLI using a file](#via-cli-using-a-file-)
-    * [Via Declaration](#via-declaration)
-      * [Sample 1:  Basic Config Map](#sample-1-basic-config-map)
-        * [Translation of cm definition to a cm object.](#translation-of-cm-definition-to-a-cm-object)
-      * [Sample 2 : Create a config map and inherit just one key as a value as an environment variable](#sample-2--create-a-config-map-and-inherit-just-one-key-as-a-value-as-an-environment-variable)
-      * [Sample 3 : Create a config map and inherit all the values](#sample-3--create-a-config-map-and-inherit-all-the-values)
-      * [Sample 4 : With a Volume Mount - Importing all Variables](#sample-4--with-a-volume-mount---importing-all-variables)
-        * [Translation of cm definition to a cm object.](#translation-of-cm-definition-to-a-cm-object-1)
-      * [Sample 5 : With a Volume Mount - Importing only required variables, mount](#sample-5--with-a-volume-mount---importing-only-required-variables-mount-)
+    * [Sample 1:  Basic Config Map](#sample-1-basic-config-map)
+      * [Translation of cm definition to a cm object.](#translation-of-cm-definition-to-a-cm-object)
+    * [Sample 2 : Create a config map and inherit just one key as a value as an environment variable](#sample-2--create-a-config-map-and-inherit-just-one-key-as-a-value-as-an-environment-variable)
+    * [Sample 3 : Create a config map and inherit all the values](#sample-3--create-a-config-map-and-inherit-all-the-values)
+    * [Sample 4 : With a Volume Mount - Importing all Variables](#sample-4--with-a-volume-mount---importing-all-variables)
+      * [Translation of cm definition to a cm object.](#translation-of-cm-definition-to-a-cm-object-1)
+    * [Sample 5 : With a Volume Mount - Importing only required variables, mount](#sample-5--with-a-volume-mount---importing-only-required-variables-mount-)
 <!-- TOC -->
-
 * Allows for environment variable reuse
 
 ### via CLI using a literal
@@ -28,12 +26,7 @@ kubectl create configmap <config-map-name> \
  --from-file=<path-to-properties-file>
 ```
 
-### Via Declaration
-
-* Save the below snippet into a file
-* Run the following via 
-
-#### Sample 1:  Basic Config Map
+### Sample 1:  Basic Config Map
 
 ```shell
 # Create the config map
@@ -41,7 +34,7 @@ k apply -f samples/configmaps/sample-1/cm.yml
 k get cm cm-sample-1
 k describe cm cm-sample-1
 ```
-#####  Translation of cm definition to a cm object.
+####  Translation of cm definition to a cm object.
 ![Alt Basics](docs/images/cm/sample-1/cm.png)
 
 ```shell
@@ -52,7 +45,7 @@ k describe po cm-sample-1-pod
 
 ![Alt Basics](docs/images/cm/sample-1/pod.png)
 
-#### Sample 2 : Create a config map and inherit just one key as a value as an environment variable
+### Sample 2 : Create a config map and inherit just one key as a value as an environment variable
 
 ```shell
 k apply -f samples/configmaps/sample-2/cm.yml
@@ -64,7 +57,7 @@ kubectl apply -f samples/configmaps/sample-2/pod.yml
 k describe po cm-sample-2-pod
 ```
 
-#### Sample 3 : Create a config map and inherit all the values
+### Sample 3 : Create a config map and inherit all the values
 
 ```shell
 k apply -f samples/configmaps/sample-3/cm.yml
@@ -76,9 +69,9 @@ kubectl apply -f samples/configmaps/sample-3/pod.yml
 k describe po cm-sample-3-pod
 ```
 
-#### Sample 4 : With a Volume Mount - Importing all Variables
+### Sample 4 : With a Volume Mount - Importing all Variables
 
-#####  Translation of cm definition to a cm object.
+####  Translation of cm definition to a cm object.
 ![Alt Basics](docs/images/cm/sample-4/cm.png)
 
 ```shell
@@ -106,7 +99,7 @@ lrwxrwxrwx    1 root     root            32 Jan 25 13:34 game_properties_file_na
 lrwxrwxrwx    1 root     root            22 Jan 25 13:34 game.properties -> ..data/game.properties
 ```
 
-#### Sample 5 : With a Volume Mount - Importing only required variables, mount 
+### Sample 5 : With a Volume Mount - Importing only required variables, mount 
 
 ```shell
 
