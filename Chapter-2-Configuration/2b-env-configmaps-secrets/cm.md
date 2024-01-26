@@ -1,5 +1,18 @@
 # Config Maps
 
+<!-- TOC -->
+* [Config Maps](#config-maps)
+    * [via CLI using a literal](#via-cli-using-a-literal)
+    * [Via CLI using a file](#via-cli-using-a-file-)
+    * [Via Declaration](#via-declaration)
+      * [Sample 1:  Basic Config Map](#sample-1-basic-config-map)
+        * [Translation of cm definition to a cm object.](#translation-of-cm-definition-to-a-cm-object)
+      * [Sample 2 : Create a config map and inherit just one key as a value as an environment variable](#sample-2--create-a-config-map-and-inherit-just-one-key-as-a-value-as-an-environment-variable)
+      * [Sample 3 : Create a config map and inherit all the values](#sample-3--create-a-config-map-and-inherit-all-the-values)
+      * [Sample 4 : With a Volume Mount - Importing all Variables](#sample-4--with-a-volume-mount---importing-all-variables)
+        * [Translation of cm definition to a cm object.](#translation-of-cm-definition-to-a-cm-object-1)
+      * [Sample 5 : With a Volume Mount - Importing only required variables, mount](#sample-5--with-a-volume-mount---importing-only-required-variables-mount-)
+<!-- TOC -->
 
 * Allows for environment variable reuse
 
@@ -65,31 +78,22 @@ k describe po cm-sample-3-pod
 
 #### Sample 4 : With a Volume Mount - Importing all Variables
 
+#####  Translation of cm definition to a cm object.
+![Alt Basics](docs/images/cm/sample-4/cm.png)
 
-##### Commands
 ```shell
 
 kubectl apply -f samples/configmaps/sample-4/cm.yml
-kubectl get cm game-demo
-kubectl describe cm game-demo
-```
-#####  Translation of cm definition to a cm object.
-![Alt Basics](docs/images/cm/cm.png/cm-desc.png)
-
-##### How to use it in the pod?
-
-###### Mounting all the properties in the config map
-```shell
-
-# Create the 2 pods
+kubectl get cm cm-sample-4
+kubectl describe cm cm-sample-4
 kubectl apply -f samples/configmaps/sample-4/pod.yml
 
 # Analysis
-kubectl get po configmap-demo-pod
+kubectl get po cm-sample-4-pod
 
 
 # Shell into the pod
-k exec -it configmap-demo-pod-1 /bin/sh
+k exec -it cm-sample-4-pod /bin/sh
 
 # ls /config
 game.properties            game_properties_file_name  player_initial_lives       ui_properties_file_name    user-interface.properties
@@ -100,11 +104,18 @@ lrwxrwxrwx    1 root     root            30 Jan 25 13:34 ui_properties_file_name
 lrwxrwxrwx    1 root     root            27 Jan 25 13:34 player_initial_lives -> ..data/player_initial_lives
 lrwxrwxrwx    1 root     root            32 Jan 25 13:34 game_properties_file_name -> ..data/game_properties_file_name
 lrwxrwxrwx    1 root     root            22 Jan 25 13:34 game.properties -> ..data/game.properties
-
 ```
 
+#### Sample 5 : With a Volume Mount - Importing only required variables, mount 
+
 ```shell
-k exec -it configmap-demo-pod-2 /bin/sh
+
+kubectl apply -f samples/configmaps/sample-5/cm.yml
+kubectl get cm cm-sample-5
+kubectl describe cm cm-sample-5
+kubectl apply -f samples/configmaps/sample-5/pod.yml
+
+k exec -it cm-sample-5-pod /bin/sh
 
 # cat the following files to view the key value pairs
 # which are mounted via a volume mount
@@ -125,6 +136,7 @@ PLAYER_INITIAL_LIVES=3
 # as opposed to the contents of the file.
 # Note: this is being grepped based on the name of the environment variable in the pod
 env | grep UI_PROPERTIES
+UI_PROPERTIES=user-interface.properties
 
 ls /config/
 game.properties            user-interface.properties

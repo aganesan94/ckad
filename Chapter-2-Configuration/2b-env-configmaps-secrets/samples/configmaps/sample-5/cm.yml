@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cm-sample-4
+  name: cm-sample-5
 data:
   # property-like keys; each key maps to a simple value
   player_initial_lives: "3"
