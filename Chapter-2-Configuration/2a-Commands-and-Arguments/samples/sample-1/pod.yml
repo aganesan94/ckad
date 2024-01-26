@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-command-args-pod-demo
+  labels:
+    purpose: demonstrate-command-args
+spec:
+  containers:
+  - name: sample-command-args-demo-ctr
+    image: debian
+    command: ["printenv"]
+    args: ["HOSTNAME", "KUBERNETES_PORT"]
+  restartPolicy: OnFailure

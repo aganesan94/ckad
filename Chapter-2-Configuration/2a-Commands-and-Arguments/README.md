@@ -55,7 +55,18 @@ docker run -e APP_COLOR=pink simple-webapp-color
 
 ![Alt Basics](./docs/images/docker-cmd-entrypoint-translation-in-k8s.png)
 
+### Sample-1: Running a command and an argument
+
+```shell
+k apply -f samples/sample-1/pod.yml
+k logs -f sample-command-args-pod-demo
+```
 ## Defining commands
 ![Alt Basics](./docs/images/defining-commands-args.png)
 
+### Sample-2: Running a pod indefinitely
 
+```shell
+k apply -f samples/sample-2/pod.yml
+k logs -f sample-2-pod-container-running
+```
