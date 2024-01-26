@@ -2,3 +2,4 @@
 
 * [Environment](env.md)
 * [Config Maps](cm.md)
+* [Secrets](secrets.md)
