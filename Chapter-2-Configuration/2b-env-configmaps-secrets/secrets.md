@@ -171,6 +171,18 @@ someuser
 somepass
 ```
 
+## Sample 4- Using a non-encoded secret
+```shell
+k apply -f samples/secrets/sample-4/secrets.yml
+k exec -it sample-4-secret-pod /bin/sh
+
+/ # env | grep username
+username=admin
+/ # env | grep password
+password=t0p-Secret
+
+```
+
 ## Notes
 
 * A secret is only sent to a node if a pod on that node requires it.
