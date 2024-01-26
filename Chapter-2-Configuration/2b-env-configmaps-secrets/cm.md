@@ -14,19 +14,19 @@
 <!-- TOC -->
 * Allows for environment variable reuse
 
-### via CLI using a literal
+## via CLI using a literal
 ```
 kubectl create configmap <config-map-name> \
  --from-literal=<key>=<value> \
  --from-literal=<key>=<value> 
 ```
-### Via CLI using a file 
+## Via CLI using a file 
 ```
 kubectl create configmap <config-map-name> \
  --from-file=<path-to-properties-file>
 ```
 
-### Sample 1:  Basic Config Map
+## Sample 1:  Basic Config Map
 
 ```shell
 # Create the config map
@@ -34,7 +34,7 @@ k apply -f samples/configmaps/sample-1/cm.yml
 k get cm cm-sample-1
 k describe cm cm-sample-1
 ```
-####  Translation of cm definition to a cm object.
+###  Translation of cm definition to a cm object.
 ![Alt Basics](docs/images/cm/sample-1/cm.png)
 
 ```shell
@@ -45,7 +45,7 @@ k describe po cm-sample-1-pod
 
 ![Alt Basics](docs/images/cm/sample-1/pod.png)
 
-### Sample 2 : Create a config map and inherit just one key as a value as an environment variable
+## Sample 2 : Create a config map and inherit just one key as a value as an environment variable
 
 ```shell
 k apply -f samples/configmaps/sample-2/cm.yml
@@ -57,7 +57,7 @@ kubectl apply -f samples/configmaps/sample-2/pod.yml
 k describe po cm-sample-2-pod
 ```
 
-### Sample 3 : Create a config map and inherit all the values
+## Sample 3 : Create a config map and inherit all the values
 
 ```shell
 k apply -f samples/configmaps/sample-3/cm.yml
@@ -69,9 +69,9 @@ kubectl apply -f samples/configmaps/sample-3/pod.yml
 k describe po cm-sample-3-pod
 ```
 
-### Sample 4 : With a Volume Mount - Importing all Variables
+## Sample 4 : With a Volume Mount - Importing all Variables
 
-####  Translation of cm definition to a cm object.
+###  Translation of cm definition to a cm object.
 ![Alt Basics](docs/images/cm/sample-4/cm.png)
 
 ```shell
@@ -99,7 +99,7 @@ lrwxrwxrwx    1 root     root            32 Jan 25 13:34 game_properties_file_na
 lrwxrwxrwx    1 root     root            22 Jan 25 13:34 game.properties -> ..data/game.properties
 ```
 
-### Sample 5 : With a Volume Mount - Importing only required variables, mount 
+## Sample 5 : With a Volume Mount - Importing only required variables, mount 
 
 ```shell
 
@@ -134,4 +134,18 @@ UI_PROPERTIES=user-interface.properties
 ls /config/
 game.properties            user-interface.properties
 ```
+## Notes
+* Mounted ConfigMaps are updated automatically
+* An immutable config map can be marked as follows
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  ...
+data:
+  ...
+immutable: true
+```
+
 
