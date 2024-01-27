@@ -1,17 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: my-secure-pod
+  name: sc-sample-1-pod
 spec:
   containers:
-  - name: ubuntu
-    image: ubuntu
-    command:
-    - "sleep"
-    - "2000"
+  - name: sc-sample-1-ctr
+    image: alpine
+    command: ["sleep", "3600"]
     securityContext:
       runAsUser: 1000
-
       # Capabilities are not supported at POD Level
       capabilities:
         add:

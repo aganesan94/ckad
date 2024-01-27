@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sc-sample-1-pod
+spec:
+  containers:
+  - name: sc-sample-1-ctr
+    image: alpine
+    command: ["sleep", "3600"]
+    securityContext:
+      runAsUser: 1000

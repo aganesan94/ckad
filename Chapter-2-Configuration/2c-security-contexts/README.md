@@ -18,7 +18,7 @@ USER 1000
 
 * Docker capabilities can be modified using the following commands
 
-```
+```shell
 docker run --cap-add MAC_ADMIN ubuntu
 docker run --cap-drop MAC_ADMIN ubuntu
 docker run --privileged ubuntu
@@ -30,7 +30,7 @@ Security contexts can be configured at 2 levels
 * Level of container
 * Execute the following command
 
-```
+```shell
 kubectl exec <pod-name> -- whoami
 ```
 
