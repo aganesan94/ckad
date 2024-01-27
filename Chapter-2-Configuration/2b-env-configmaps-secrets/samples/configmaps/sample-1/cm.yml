@@ -5,3 +5,21 @@ metadata:
 data:
   APP_COLOR: pink
 
+---
+
+# This methodology is used to inject only a desired Value to the environment variable
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-sample-1-pod
+spec:
+  containers:
+  - name: cm-sample-1-ctr
+    image: alpine
+    command: ["sleep", "3600"]
+    env:
+    - name: APP_COLOR
+      valueFrom:
+        configMapKeyRef:
+          name: cm-sample-1
+          key: APP_COLOR

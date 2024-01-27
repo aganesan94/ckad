@@ -37,12 +37,6 @@ k describe cm cm-sample-1
 ###  Translation of cm definition to a cm object.
 ![Alt Basics](docs/images/cm/sample-1/cm.png)
 
-```shell
-# Create the 2 pods
-kubectl apply -f samples/configmaps/sample-1/pod.yml
-k describe po cm-sample-1-pod
-```
-
 ![Alt Basics](docs/images/cm/sample-1/pod.png)
 
 ## Sample 2 : Create a config map and inherit just one key as a value as an environment variable
@@ -51,9 +45,6 @@ k describe po cm-sample-1-pod
 k apply -f samples/configmaps/sample-2/cm.yml
 k get cm cm-sample-2
 k describe cm cm-sample-2
-
-# Create the 2 pods
-kubectl apply -f samples/configmaps/sample-2/pod.yml
 k describe po cm-sample-2-pod
 ```
 
@@ -63,9 +54,6 @@ k describe po cm-sample-2-pod
 k apply -f samples/configmaps/sample-3/cm.yml
 k get cm cm-sample-3
 k describe cm cm-sample-3
-
-# Create the 2 pods
-kubectl apply -f samples/configmaps/sample-3/pod.yml
 k describe po cm-sample-3-pod
 ```
 
@@ -76,13 +64,10 @@ k describe po cm-sample-3-pod
 
 ```shell
 
-kubectl apply -f samples/configmaps/sample-4/cm.yml
-kubectl get cm cm-sample-4
-kubectl describe cm cm-sample-4
-kubectl apply -f samples/configmaps/sample-4/pod.yml
-
-# Analysis
-kubectl get po cm-sample-4-pod
+k apply -f samples/configmaps/sample-4/cm.yml
+k get cm cm-sample-4
+k describe cm cm-sample-4
+k get po cm-sample-4-pod
 
 
 # Shell into the pod
@@ -103,10 +88,9 @@ lrwxrwxrwx    1 root     root            22 Jan 25 13:34 game.properties -> ..da
 
 ```shell
 
-kubectl apply -f samples/configmaps/sample-5/cm.yml
-kubectl get cm cm-sample-5
-kubectl describe cm cm-sample-5
-kubectl apply -f samples/configmaps/sample-5/pod.yml
+k apply -f samples/configmaps/sample-5/cm.yml
+k get cm cm-sample-5
+k describe cm cm-sample-5
 
 k exec -it cm-sample-5-pod /bin/sh
 
