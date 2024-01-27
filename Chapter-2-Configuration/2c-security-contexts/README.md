@@ -1,10 +1,11 @@
 # Security Contexts
 
+## Docker
 * Docker containers run so that they can only see their processes only
 * root runs a PID of 1 inside the container
 * Docker can be made to run a command with a specific user id using the following
 
-```
+```shell
 docker run --user=1000 ubuntu sleep 3000
 ```
 

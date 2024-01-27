@@ -1,5 +1,21 @@
 # Secrets
 
+<!-- TOC -->
+* [Secrets](#secrets)
+  * [via CLI using a literal](#via-cli-using-a-literal)
+  * [Converting a plain text to a base64 encoded format](#converting-a-plain-text-to-a-base64-encoded-format)
+  * [Converting a base64 to a text decoded format](#converting-a-base64-to-a-text-decoded-format)
+  * [Via CLI using a file](#via-cli-using-a-file)
+  * [Via CLI for Docker Registry using a literal](#via-cli-for-docker-registry-using-a-literal)
+  * [Via CLI for Docker Registry using a file](#via-cli-for-docker-registry-using-a-file)
+  * [Decoding a docker based secret](#decoding-a-docker-based-secret)
+  * [Sample 1- Using a secret in a pod](#sample-1--using-a-secret-in-a-pod)
+  * [Sample 2- Loading all secrets from a secret file](#sample-2--loading-all-secrets-from-a-secret-file)
+  * [Sample 3- Using a volume mount](#sample-3--using-a-volume-mount)
+  * [Sample 4- Using a non-encoded secret](#sample-4--using-a-non-encoded-secret)
+  * [Notes](#notes)
+<!-- TOC -->
+
 * Set environment variables for a container.
 * Provide credentials such as SSH keys or passwords to Pods.
 * Allow the kubelet to pull container images from private registries.
