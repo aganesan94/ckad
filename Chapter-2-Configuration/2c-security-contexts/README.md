@@ -1,5 +1,13 @@
 # Security Contexts
 
+<!-- TOC -->
+* [Security Contexts](#security-contexts)
+  * [Docker](#docker)
+  * [Sample - 1 : Applying security Contexts to the level of the pod](#sample---1--applying-security-contexts-to-the-level-of-the-pod)
+  * [Sample - 2: Applying security Contexts to the level of the container](#sample---2-applying-security-contexts-to-the-level-of-the-container)
+  * [Sample - 3: Applying security Contexts and adding capabilities for a container](#sample---3-applying-security-contexts-and-adding-capabilities-for-a-container)
+<!-- TOC -->
+
 ## Docker
 * Docker containers run so that they can only see their processes only
 * root runs a PID of 1 inside the container
@@ -28,10 +36,24 @@ Security contexts can be configured at 2 levels
 
 * Level of pod (applies to all containers)
 * Level of container
-* Execute the following command
+* Security context at the container level overrides the specs at the pod level
 
+## Sample - 1 : Applying security Contexts to the level of the pod
 ```shell
-kubectl exec <pod-name> -- whoami
+k apply -f samples/sample-1/sc.yml
 ```
 
-* Security context at the container level overrides the specs at the pod level
+## Sample - 2: Applying security Contexts to the level of the container
+```shell
+k apply -f samples/sample-2/sc.yml
+```
+
+## Sample - 3: Applying security Contexts and adding capabilities for a container
+* Capabilities do not work at the POD level and can only work on the container level
+```shell
+k apply -f samples/sample-3/sc.yml
+
+$ k exec -it sc-sample-3-pod -- whoami
+root
+```
+
