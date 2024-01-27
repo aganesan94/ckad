@@ -37,6 +37,7 @@ Security contexts can be configured at 2 levels
 * Level of pod (applies to all containers)
 * Level of container
 * Security context at the container level overrides the specs at the pod level
+* If no security context is specified the pod/container runs as a root user
 
 ## Sample - 1 : Applying security Contexts to the level of the pod
 ```shell
