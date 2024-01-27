@@ -6,7 +6,7 @@
 
 ## via CLI using a literal
 ```shell
-kubectl create secret <config-map-name> \
+kubectl create secret <secret-name> \
  --from-literal=<key>=<value> \
  --from-literal=<key>=<value> 
  
