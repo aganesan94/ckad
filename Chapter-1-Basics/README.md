@@ -32,10 +32,90 @@
 * Markdown cheatsheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 * CKAD Practice per topic: https://github.com/dgkanatsios/CKAD-exercises/blob/main/a.core_concepts.md
 * Arun's CKAD Book: https://github.com/aganesan94/ckad
-* Install minikube and kubectl
+* Install minikube, kind and kubectl
 * Commands: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
 * Set up kubectl  as alias using the quick reference https://kubernetes.io/docs/reference/kubectl/quick-reference/
 ---
+
+## Pre-requisites
+
+###  Install kind, kubectl, helm
+
+```shell
+# Install kind
+curl -kLo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+
+# Install kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256" && \
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+chmod +x kubectl
+mkdir -p ~/.local/bin
+mv ./kubectl ~/.local/bin/kubectl
+
+# Install helm 
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+
+```
+
+
+### Get the k8s dashboard ready 
+
+```shell
+helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+helm install dashboard kubernetes-dashboard/kubernetes-dashboard -n kubernetes-dashboard --create-namespace
+```
+* Save the below snippet to a file (sa-dashboard.yml) and run
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kubernetes-dashboard
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: admin-user-secret-token
+  annotations:
+    kubernetes.io/service-account.name: admin-user
+type: kubernetes.io/service-account-token
+```
+
+```shell
+k create -f sa-dashboard.yml
+
+# Access the token from the secret
+k describe secret  admin-user-secret-token
+
+# Run kube proxy as dashboard is installed as a ClusterIP and does not have access
+# outside the cluster
+k proxy
+
+# Access the dashboard on the url
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:dashboard-kubernetes-dashboard:https/proxy/#/login
+```
 
 ## Kubernetes Overview
 
@@ -44,6 +124,8 @@
 ## K8s concepts
 
 *Note: Always remember to make sure which namespace you are working on*
+
+
 
 ### Pods
 
@@ -60,77 +142,77 @@
 #### Commands
 ```
 # Imperative command to run a pod
-kubectl run <pod-name> --image <image-name:version>
+k run <pod-name> --image <image-name:version>
 
 # Imperative command to run a pod with a --watch
-kubectl run <pod-name> --image <image-name:version> --watch
+k run <pod-name> --image <image-name:version> --watch
 
 # Imperative commadn to do a quick dry run to check the pod specification
 # This can be piped to a file
-kubectl run nginx --image=nginx --dry-run=client 
+k run nginx --image=nginx --dry-run=client  -o yaml
 
 # Getting a list of pods across all namespaces
-kubectl get pods --all-namespaces 
+k get pods --all-namespaces 
 
 # Counting a list of pods across all namespaces
 # NOTE: The output is one less than the count provided
-kubectl get pods --all-namespaces  | wc -l
+k get pods --all-namespaces  | wc -l
 
 # Getting a pods yaml file
-kubectl get pod my-pod -o yaml 
+k get pod my-pod -o yaml 
  
 # Be thorough with all the semantics of pods from this output at all times
 # This provide more information of which worker node the pod is deployed or scheduled in
-kubectl get pods -o wide
+k get pods -o wide
 
 # delete a pod which was created from a defintion file
-kubectl delete pod -f <pod-definition.yml>
+k delete pod -f <pod-definition.yml>
 
 # Delete a pod
-kubectl delete pod <pod-name> -n <namespace>
+k delete pod <pod-name> -n <namespace>
 
 #Force Delete the pod
-kubectl delete pod <pod-name> -n <namespace> --force
+k delete pod <pod-name> -n <namespace> --force
 
 # Finding the image used to create a  pod
 # Note: Word image is in Caps
-kubectl describe pod <pod-name> | grep "Image"
+k describe pod <pod-name> | grep "Image"
 
 # Getting the total number of containers in a pod
-kubectl describe pod <pod-name> | grep "Container ID"
+k describe pod <pod-name> | grep "Container ID"
 
 # Get the status of the pod
 # Look at the last line after describing the pod or look at status
-kubectl get pod
+k get pod
 
 # To see why a container is not running, look at the "Events" section
-kubectl describe pod <pod-name>
+k describe pod <pod-name>
 
 # To get all pods
 # To fetch the "no of containers running/total containers"  running
 # in the pod look at the "status" column using the following command
-kubectl get pods 
+k get pods 
 
 # Edit a pod, Change some parameters, Write to a file
-kubectl edit pod <pod-name>
+k edit pod <pod-name>
 
 # Gets the pod definition as a yaml file
-kubectl get pod <pod-name> -o yaml
+k get pod <pod-name> -o yaml
 
 # Describing all pods
-kubectl get pods
+k get pods
 
 # Create vs apply command
 # Note this applies to not just pods but to any object
 # Imperative Management vs Declarative Management
 # Imperative management means giving a series of instructions or steps to reach the goal. We specify what and how we should reach the goal.
-# This is where we tell K8S what to create, replace, delete, etc., using the API. Objects are created and managed using the kubectl command on the command line interface (CLI).
+# This is where we tell K8S what to create, replace, delete, etc., using the API. Objects are created and managed using the k command on the command line interface (CLI).
 # Declarative management is where we specify the required outcome, not the individual steps needed to achieve that outcome.
 # For each kind of resource specified in our YAML configuration files, a dedicated controller checks what we currently have and tries to converge it with what we want.
 # create is imperative, if the resource already exists, this command will error.
 # apply is declarative, If the resource already exists, this command will not error.
-kubectl create -f <file-name-definition> - Imperative command
-kubectl apply (-f FILENAME | -k DIRECTORY)
+k create -f <file-name-definition> - Imperative command
+k apply (-f FILENAME | -k DIRECTORY)
 ```
 
 #### Note when editing pods
