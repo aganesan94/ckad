@@ -8,6 +8,6 @@ spec:
   containers:
   - name: sample-command-args-demo-ctr
     image: debian
-    command: ["printenv"]
-    args: ["HOSTNAME", "KUBERNETES_PORT"]
+    command: ["printenv"] # Entry point in Docker
+    args: ["HOSTNAME", "KUBERNETES_PORT"] # CMD in docker
   restartPolicy: OnFailure

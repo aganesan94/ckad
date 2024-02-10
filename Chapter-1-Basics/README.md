@@ -106,9 +106,10 @@ subjects:
 - kind: ServiceAccount
   name: admin-user
   namespace: kubernetes-dashboard
+```
 
----
-
+* Save the below snippet to a file (secrets-dashboard.yml) and run
+```yaml
 apiVersion: v1
 kind: Secret
 metadata:
