@@ -58,6 +58,15 @@ kubectl create secret generic db-user-pass \
 kubectl create secret generic db-user-pass \
     --from-file=username=./username.txt \
     --from-file=password=./password.txt
+
+# Get password
+kubectl get secrets/db-user-pass --template={{.data.password}} | base64 -D
+
+# Decode password
+kubectl get secrets/db-user-pass --template={{.data.password}} | base64 -D
+
+# Decode username
+kubectl get secrets/db-user-pass --template={{.data.username}} | base64 -D
 ```
 
 ## Via CLI for Docker Registry using a literal
@@ -84,7 +93,7 @@ kubectl create secret docker-registry my-secret --from-file=.dockerconfigjson=pa
 kubectl get secret db-user-pass -o jsonpath='{.data}'
 
 # Decoding a secret
-kubectl get secret secret-tiger-docker -o jsonpath='{.data.*}' | base64 -d
+kubectl get secret secret-tiger-docker -o jsonpath='{.data.*}' 
 ```
 
 ## Sample 1- Using a secret in a pod
