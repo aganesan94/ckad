@@ -21,15 +21,14 @@ docker run -e key=val <image-name>
 ```shell
 k apply -f samples/environment/samples-1/env.yml
 k get po sample-1-env-pod
+k describe po sample-1-env-pod
 
 # Shell in to check out environment variables
-k exec -it sample-1-env-pod /bin/ss
+k exec -it sample-1-env-pod /bin/sh
 # env | grep DEMO_GREETING
 DEMO_GREETING=Hello from the environment
 # env | grep DEMO_FAREWELL
 DEMO_FAREWELL=Such a sweet sorrow
-
-k describe po sample-1-env-pod
 ```
 
 ![Alt Basics](docs/images/environment/sample-1/env.png)
