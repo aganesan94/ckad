@@ -15,15 +15,21 @@
 * Allows for environment variable reuse
 
 ## via CLI using a literal
-```
+```shell
 kubectl create configmap <config-map-name> \
  --from-literal=<key>=<value> \
- --from-literal=<key>=<value> 
+ --from-literal=<key>=<value>
+ 
+kubectl create configmap create-configmap-by-literal \
+ --from-literal=name=kartees \
+ --from-literal=age=23  
 ```
 ## Via CLI using a file 
-```
+```shell
 kubectl create configmap <config-map-name> \
  --from-file=<path-to-properties-file>
+ 
+ kubectl create configmap create-configmap-from-file  --from-file=$(pwd)/samples/configmaps/sample-6/user.properties
 ```
 
 ## Sample 1:  Basic Config Map
