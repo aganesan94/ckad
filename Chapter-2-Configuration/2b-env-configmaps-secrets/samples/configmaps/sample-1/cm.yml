@@ -4,6 +4,7 @@ metadata:
   name: cm-sample-1
 data:
   APP_COLOR: pink
+  APP_CATEGORY: colors
 
 ---
 
