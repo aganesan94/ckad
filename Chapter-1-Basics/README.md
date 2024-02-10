@@ -60,6 +60,21 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scrip
 chmod 700 get_helm.sh
 ./get_helm.sh
 
+
+# Ensure to double check versions
+kubectl version
+kind version
+helm version
+
+# Create a cluster
+kind create cluster --name <cluster-name>
+
+# get a cluster
+kind get clusters
+
+# Get the cluster info 
+k cluster-info --context kind-<cluster-name>
+
 ```
 
 
